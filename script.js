@@ -1,8 +1,13 @@
 $(document).ready(function(){
   $(".message").hide();
-  var player1= prompt("You go First! Do you want to be X or O?");
+  var player1;
   var player2;
-
+  function makePlayer1(){
+    player1 = prompt("You go First! Do you want to be X or O?");
+    player1.toString();
+    player1.toUpperCase();
+    makePlayer2();
+  }
   function makePlayer2(){
     if (player1 === "X"){
       player2 = "O";
@@ -11,11 +16,11 @@ $(document).ready(function(){
       player2 = "X";
     }
   }
-  makePlayer2();
+
   var clickID = 0;
   $(".square").on("click", function(){
     $(".message").show();
-    if($(this).html() !== "X" && $(this).html()!=="O"){
+    if($(this).html() !== player1 && $(this).html()!== player2){
         if (clickID % 2 === 0){
               $(this).html(player1);
               clickID++;
@@ -30,11 +35,14 @@ $(document).ready(function(){
     determineWinner();
   });
 
-  $("button").on("click", function(){
+  $(".reset").on("click", function(){
     clickID = 0;
     $(".square").html(" ");
     $(".message").hide();
+    makePlayer1();
   });
+
+  $(".start").on("click", makePlayer1);
 
   function determineWinner(){
     var winner;
@@ -117,6 +125,10 @@ $(document).ready(function(){
         winner = player1;
         console.log(winner + " you win!");
         $(".message").html(winner + " you win the game!");
+      }
+      else{
+        winner = "Tie";
+        $(".message").html("It's a tie!");
       }
       return winner;
   }
