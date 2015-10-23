@@ -3,9 +3,11 @@ body{
   font-family: "Wallpoet";
   text-align: center;
   color: black;
+
 }
 h1{
   color: white;
+  font-size: 30px;
 }
 div.main {
   background-color: black;
@@ -46,4 +48,7 @@ button{
   font-size: 20px;
   border: 3px solid lemonchiffon;
   margin: 1px;
+}
+button:hover{
+  background-color: lemonchiffon;
 }
